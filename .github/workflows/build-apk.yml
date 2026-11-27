@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:      # botão "Run workflow" na aba Actions
+  workflow_dispatch:
   push:
     paths: ['source/Android/**', '.github/workflows/build-apk.yml']
 
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive      # baixa dsp56300, mc68k, asmjit, etc.
+          submodules: recursive
 
       - uses: actions/setup-java@v4
         with:
@@ -19,6 +19,8 @@ jobs:
           java-version: 17
 
       - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
       - name: Install NDK and CMake
         run: |
